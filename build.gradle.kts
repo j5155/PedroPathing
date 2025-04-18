@@ -93,7 +93,7 @@ publishing {
 		register<MavenPublication>("release") {
 			groupId = "com.pedropathing"
 			artifactId = "pedro"
-			version = "1.0.9"
+			version = "1.0.10"
 
 			afterEvaluate {
 				from(components["release"])
@@ -105,6 +105,22 @@ publishing {
 		maven {
 			name = "publishing"
 			url = uri("./maven.pedropathing.com")
+		}
+		maven {
+			name = "dairyReleases"
+			url = uri("https://repo.dairy.foundation/releases")
+			credentials(PasswordCredentials::class)
+			authentication {
+				BasicAuthentication::class
+			}
+		}
+		maven {
+			name = "dairySnapshots"
+			url = uri("https://repo.dairy.foundation/snapshots")
+			credentials(PasswordCredentials::class)
+			authentication {
+				BasicAuthentication::class
+			}
 		}
 	}
 }
